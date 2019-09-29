@@ -163,7 +163,9 @@ module.exports = {
       { where: { id } }
     )
       .then(result => {
-        const feedback = { id };
+        let feedback = {};
+        feedback.id = id;
+
         response(res, feedback, 200);
       })
       .catch(error => {
@@ -177,7 +179,9 @@ module.exports = {
       where: { id }
     })
       .then(result => {
-        const feedback = { id };
+        let feedback = {};
+        feedback.id = id;
+
         response(res, feedback, 200);
       })
       .catch(error => {
