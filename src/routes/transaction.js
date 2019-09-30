@@ -9,11 +9,18 @@ const {
 } = require("../controllers/transaction");
 const { isAuth, isAdmin, isUser } = require("../middlewares/auth");
 
+// router
+//   .get("/", getAllTransaction)
+//   .post("/", isAuth, isUser, createTransaction)
+//   .get("/:id", getTransaction)
+//   .patch("/:id", isAuth, isAdmin, patchTransaction)
+//   .delete("/:id", isAuth, isAdmin, deleteTransaction);
+
 router
   .get("/", getAllTransaction)
-  .post("/", isAuth, isUser, createTransaction)
+  .post("/", createTransaction)
   .get("/:id", getTransaction)
-  .patch("/:id", isAuth, isAdmin, patchTransaction)
-  .delete("/:id", isAuth, isAdmin, deleteTransaction);
+  .patch("/:id", patchTransaction)
+  .delete("/:id", deleteTransaction);
 
 module.exports = router;
