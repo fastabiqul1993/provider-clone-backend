@@ -3,7 +3,7 @@ const { response } = require("../helpers/helper");
 
 module.exports = {
   getAllCategory: (req, res) => {
-    PrCategory.findAll()
+    PrCategory.findAndCountAll()
       .then(result => {
         response(res, result, 200);
       })
