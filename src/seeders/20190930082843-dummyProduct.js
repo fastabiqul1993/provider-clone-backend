@@ -29,6 +29,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 2500,
+          discount: 0,
+          discprice: 2500,
           bandwidth: 1000,
           duration: 1,
           SubCategoryId: 1,
@@ -41,6 +43,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 3500,
+          discount: 0,
+          discprice: 3500,
           bandwidth: 2000,
           duration: 1,
           SubCategoryId: 1,
@@ -52,7 +56,9 @@ module.exports = {
           name: "Bronet 24 Jam 1GB",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          price: 16900,
+          price: 17000,
+          discount: 10,
+          discprice: 15300,
           bandwidth: 1000,
           duration: 1,
           SubCategoryId: 2,
@@ -65,6 +71,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 25000,
+          discount: 10,
+          discprice: 22500,
           bandwidth: 2000,
           duration: 1,
           SubCategoryId: 2,
@@ -77,6 +85,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 500,
+          discount: 0,
+          discprice: 500,
           bandwidth: 500,
           duration: 1,
           SubCategoryId: 3,
@@ -89,6 +99,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 1000,
+          discount: 0,
+          discprice: 1000,
           bandwidth: 1000,
           duration: 1,
           SubCategoryId: 3,
@@ -101,6 +113,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 500,
+          discount: 0,
+          discprice: 500,
           bandwidth: 500,
           duration: 1,
           SubCategoryId: 4,
@@ -113,6 +127,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 1000,
+          discount: 0,
+          discprice: 1000,
           bandwidth: 1000,
           duration: 1,
           SubCategoryId: 4,
@@ -125,6 +141,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 4000,
+          discount: 0,
+          discprice: 4000,
           bandwidth: 100,
           duration: 1,
           SubCategoryId: 5,
@@ -137,6 +155,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 10000,
+          discount: 10,
+          discprice: 9000,
           bandwidth: 300,
           duration: 1,
           SubCategoryId: 5,
@@ -149,6 +169,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 1000,
+          discount: 0,
+          discprice: 1000,
           bandwidth: 200,
           duration: 1,
           SubCategoryId: 6,
@@ -161,6 +183,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 2000,
+          discount: 0,
+          discprice: 2000,
           bandwidth: 1000,
           duration: 1,
           SubCategoryId: 6,
@@ -173,6 +197,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 85000,
+          discount: 50,
+          discprice: 42500,
           bandwidth: 10000,
           duration: 1,
           SubCategoryId: 7,
@@ -185,6 +211,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 150000,
+          discount: 35,
+          discprice: 97500,
           bandwidth: 30000,
           duration: 1,
           SubCategoryId: 7,
@@ -197,6 +225,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 200000,
+          discount: 50,
+          discprice: 100000,
           bandwidth: 100000,
           duration: 1,
           SubCategoryId: 8,
@@ -209,6 +239,8 @@ module.exports = {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           price: 150000,
+          discount: 25,
+          discprice: 112500,
           bandwidth: 100000,
           duration: 1,
           SubCategoryId: 8,

@@ -10,5 +10,10 @@ module.exports = {
   },
   getOffset: (page, limit) => {
     return (Number(page) - 1) * limit;
+  },
+  getDiscount: (price, discount) => {
+    const priceDiscount = (price * discount) / 100;
+    const afterDiscount = price - priceDiscount;
+    return afterDiscount;
   }
 };

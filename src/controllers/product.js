@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const { Product, Category, SubCategory } = require("../models");
-const { response, getOffset } = require("../helpers/helper");
+const { response, getOffset, getDiscount } = require("../helpers/helper");
 
 module.exports = {
   getAllProduct: (req, res) => {
@@ -59,16 +59,21 @@ module.exports = {
       name,
       description,
       price,
+      discount,
       bandwidth,
       duration,
       SubCategoryId,
       CategoryId
     } = req.body;
 
+    const afterDiscount = getDiscount(price, discount);
+
     Product.create({
       name,
       description,
       price,
+      discount,
+      discprice: afterDiscount,
       bandwidth,
       duration,
       SubCategoryId,
@@ -92,8 +97,19 @@ module.exports = {
     } = req.body;
     const { id } = req.params;
 
+    const afterDiscount = getDiscount(price, discount);
+
     Product.update(
-      { name, description, price, bandwidth, duration, SubCategoryId },
+      {
+        name,
+        description,
+        price,
+        discount,
+        discprice: afterDiscount,
+        bandwidth,
+        duration,
+        SubCategoryId
+      },
       { where: { id } }
     )
       .then(result => {
