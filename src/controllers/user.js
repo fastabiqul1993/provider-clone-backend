@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
 const saltRount = 10;
 
 const { User, Transaction } = require("../models");

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   SubCategory.associate = function(models) {
     // associations can be defined here
-    SubCategory.belongsTo(models.PrCategory);
+    SubCategory.belongsTo(models.Category);
     SubCategory.hasMany(models.Product);
   };
   return SubCategory;

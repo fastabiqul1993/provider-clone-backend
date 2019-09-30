@@ -1,10 +1,13 @@
-const { Category, SubCategory } = require("../models");
+const { SubCategory } = require("../models");
 const { response } = require("../helpers/helper");
 
+const { Category } = require("../models");
+
 module.exports = {
-  getAllCategory: (req, res) => {
-    Category.findAndCountAll({
-      include: [{ model: SubCategory }]
+  getAllSubCategory: (req, res) => {
+    SubCategory.findAndCountAll({
+      order: [["createdAt", "DESC"]],
+      include: [{ model: Category }]
     })
       .then(result => {
         response(res, result, 200);
@@ -13,11 +16,12 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  getCategory: (req, res) => {
+  getSubCategory: (req, res) => {
     const { id } = req.params;
-    Category.findOne({
+
+    SubCategory.findOne({
       where: { id },
-      include: [{ model: PrCategory }]
+      include: [{ model: Category }]
     })
       .then(result => {
         response(res, result, 200);
@@ -26,10 +30,10 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  createCategory: (req, res) => {
-    const { name } = req.body;
+  createSubCategory: (req, res) => {
+    const { name, CategoryId } = req.body;
 
-    Category.create({ name })
+    SubCategory.create({ name, CategoryId })
       .then(result => {
         response(res, result, 200);
       })
@@ -37,11 +41,11 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  patchCategory: (req, res) => {
-    const { name } = req.body;
+  patchSubCategory: (req, res) => {
+    const { name, CategoryId } = req.body;
     const { id } = req.params;
 
-    Category.update({ name }, { where: { id } })
+    SubCategory.update({ name, CategoryId }, { where: { id } })
       .then(result => {
         let feedback = {};
         feedback.id = id;
@@ -52,10 +56,10 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  deleteCategory: (req, res) => {
+  deleteSubCategory: (req, res) => {
     const { id } = req.params;
 
-    Category.destroy({ where: { id } })
+    SubCategory.destroy({ where: { id } })
       .then(result => {
         let feedback = {};
         feedback.id = id;
