@@ -13,7 +13,7 @@ module.exports = {
   },
 
   isAdmin: (req, res, next) => {
-    const secret_key = process.env.secret_key;
+    const secret_key = process.env.SECRET_KEY;
     const token = req.headers["token"];
 
     jwt.verify(token, secret_key, (err, decoded) => {

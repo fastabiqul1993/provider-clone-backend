@@ -97,7 +97,7 @@ module.exports = {
     });
   },
   getAll: (req, res) => {
-    const { page, order, search, id } = req.query;
+    const { page, order } = req.query;
     const offset = page ? getOffset(page, 10) : 0;
     const orderBy = order ? order : "DESC";
 
@@ -105,10 +105,7 @@ module.exports = {
       limit: 10,
       offset,
       order: [["createdAt", orderBy]],
-      include: [{ model: Transaction }],
-      where: {
-        [Op.or]: [{ name: { [Op.like]: `%${search}%` } }, { id }]
-      }
+      include: [{ model: Transaction }]
     })
       .then(result => {
         response(res, result, 200);
