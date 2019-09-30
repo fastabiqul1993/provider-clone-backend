@@ -129,7 +129,9 @@ module.exports = {
       include: [{ model: Transaction }]
     })
       .then(result => {
-        response(res, result, 200);
+        let feedback = {};
+        feedback.rows = result;
+        response(res, feedback, 200);
       })
       .catch(error => {
         response(res, null, 400, error);

@@ -29,6 +29,16 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
+  getAllProductName: (req, res) => {
+    Product.findAll({ attributes: ["id", "name"] })
+      .then(result => {
+        response(res, result, 200);
+      })
+      .catch(err => {
+        response(res, null, 400, err);
+      });
+  },
+
   getProduct: (req, res) => {
     const { id } = req.params;
     Product.findOne({
@@ -36,7 +46,9 @@ module.exports = {
       include: [{ model: Category }, { model: SubCategory }]
     })
       .then(result => {
-        response(res, result, 200);
+        let feedback = {};
+        feedback.rows = result;
+        response(res, feedback, 200);
       })
       .catch(err => {
         response(res, null, 400, err);

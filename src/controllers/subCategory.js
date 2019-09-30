@@ -25,7 +25,9 @@ module.exports = {
       include: [{ model: Category }]
     })
       .then(result => {
-        response(res, result, 200);
+        let feedback = {};
+        feedback.rows = result;
+        response(res, feedback, 200);
       })
       .catch(err => {
         response(res, null, 400, err);

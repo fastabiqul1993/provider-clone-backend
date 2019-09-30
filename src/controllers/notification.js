@@ -1,10 +1,16 @@
-const { Category, SubCategory, Product } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+const { Notification, User } = require("../models");
 const { response } = require("../helpers/helper");
 
 module.exports = {
-  getAllCategory: (req, res) => {
-    Category.findAndCountAll({
-      include: [{ model: SubCategory }, { model: Product }]
+  getAllNotification: (req, res) => {
+    const { UserId } = req.query;
+
+    Notification.findAndCountAll({
+      where: {
+        [Op.or]: [{ UserId }, { id: { [Op.not]: 0 } }]
+      }
     })
       .then(result => {
         response(res, result, 200);
@@ -13,11 +19,12 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  getCategory: (req, res) => {
+  getNotification: (req, res) => {
     const { id } = req.params;
-    Category.findOne({
+
+    Notification.findOne({
       where: { id },
-      include: [{ model: PrCategory }]
+      include: [{ model: User }]
     })
       .then(result => {
         let feedback = {};
@@ -28,10 +35,10 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  createCategory: (req, res) => {
-    const { name } = req.body;
+  createNotification: (req, res) => {
+    const { UserId, message } = req.body;
 
-    Category.create({ name })
+    Notification.create({ UserId, message })
       .then(result => {
         response(res, result, 200);
       })
@@ -39,11 +46,11 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  patchCategory: (req, res) => {
-    const { name } = req.body;
+  patchNotification: (req, res) => {
+    const { message } = req.body;
     const { id } = req.params;
 
-    Category.update({ name }, { where: { id } })
+    Notification.update({ message }, { where: { id } })
       .then(result => {
         let feedback = {};
         feedback.id = id;
@@ -54,10 +61,10 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
-  deleteCategory: (req, res) => {
+  deleteNotification: (req, res) => {
     const { id } = req.params;
 
-    Category.destroy({ where: { id } })
+    Notification.destroy({ where: { id } })
       .then(result => {
         let feedback = {};
         feedback.id = id;
