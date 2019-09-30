@@ -1,10 +1,10 @@
-const { Category, SubCategory } = require("../models");
+const { Category, SubCategory, Product } = require("../models");
 const { response } = require("../helpers/helper");
 
 module.exports = {
   getAllCategory: (req, res) => {
     Category.findAndCountAll({
-      include: [{ model: SubCategory }]
+      include: [{ model: SubCategory }, { model: Product }]
     })
       .then(result => {
         response(res, result, 200);

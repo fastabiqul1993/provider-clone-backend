@@ -8,13 +8,15 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       bandwidth: DataTypes.INTEGER,
       duration: DataTypes.INTEGER,
-      SubCategoryId: DataTypes.INTEGER
+      SubCategoryId: DataTypes.INTEGER,
+      CategoryId: DataTypes.INTEGER
     },
     {}
   );
   Product.associate = function(models) {
     // associations can be defined here
     Product.belongsTo(models.SubCategory);
+    Product.belongsTo(models.Category);
   };
   return Product;
 };
