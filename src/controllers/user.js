@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const saltRount = 10;
 
 const { User, Transaction } = require("../models");
-const { response, getOffset } = require("../helpers/helper");
+const { response, getOffset, sendMail } = require("../helpers/helper");
 
 module.exports = {
   login: (req, res) => {
@@ -43,26 +43,37 @@ module.exports = {
   register: (req, res) => {
     const { name, email, phone, password } = req.body;
 
-    if (password) {
-      bcrypt.hash(password, saltRount, (err, hash) => {
-        User.create({
-          name,
-          email,
-          phone,
-          password: hash,
-          role: "user",
-          credit: 0
-        })
-          .then(result => {
-            response(res, result, 200);
-          })
-          .catch(err => {
-            response(res, null, 400, err);
-          });
+    User.findOne({ where: { email }, raw: true })
+      .then(result => {
+        if (!result) {
+          if (password) {
+            bcrypt.hash(password, saltRount, (err, hash) => {
+              User.create({
+                name,
+                email,
+                phone,
+                password: hash,
+                role: "user",
+                credit: 0
+              })
+                .then(result => {
+                  // sendMail(name, email);
+                  response(res, result, 200);
+                })
+                .catch(err => {
+                  response(res, null, 400, err);
+                });
+            });
+          } else {
+            response(res, null, 400, "Password cannot be empty");
+          }
+        } else {
+          response(res, null, 400, "Email already exist!");
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-    } else {
-      response(res, null, 400, "Password cannot be empty");
-    }
   },
   topUp: (req, res) => {
     const { id } = req.params;

@@ -15,8 +15,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "googleapis": "^43.0.0",
+    "hogan.js": "^3.0.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "nodemailer": "^6.3.0",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^4.44.3"

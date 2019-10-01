@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const models = require("../models/index");
 const { Transaction, User, Product } = require("../models");
 const { response, getOffset } = require("../helpers/helper");
 
@@ -25,6 +26,7 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
+
   getTransaction: (req, res) => {
     const { id } = req.params;
 
@@ -41,17 +43,57 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
+
   createTransaction: (req, res) => {
     const { UserId, ProductId } = req.body;
+    const findUser = User.findOne({
+      where: { id: UserId },
+      attributes: ["id", "credit"],
+      raw: true
+    });
+    const findProduct = Product.findOne({
+      where: { id: ProductId },
+      attributes: ["discprice"],
+      raw: true
+    });
+    const findTransaction = Transaction.findOne({
+      where: { UserId, [Op.and]: { ProductId } },
+      raw: true
+    });
 
-    Transaction.create({ UserId, ProductId })
+    Promise.all([findUser, findProduct, findTransaction])
       .then(result => {
-        response(res, result, 200);
+        if (!result[2]) {
+          if (result[0].credit > result[1].discprice) {
+            let creditAfter = result[0].credit - result[1].discprice;
+
+            return models.sequelize
+              .transaction(function(t) {
+                return User.update(
+                  { credit: creditAfter },
+                  { where: { id: UserId } }
+                ).then(function(user) {
+                  return Transaction.create({ UserId, ProductId });
+                });
+              })
+              .then(newTransaction => {
+                let feedback = {};
+                feedback.UserId = UserId;
+                feedback.ProductId = ProductId;
+                response(res, feedback, 200);
+              });
+          } else {
+            response(res, null, 400, "Credit not enough!");
+          }
+        } else {
+          response(res, null, 400, "Cannot buy multiple product!");
+        }
       })
       .catch(err => {
-        response(res, null, 400, err);
+        console.log(err);
       });
   },
+
   patchTransaction: (req, res) => {
     const { UserId, ProductId } = req.body;
     const { id } = req.params;
@@ -67,6 +109,7 @@ module.exports = {
         response(res, null, 400, err);
       });
   },
+
   deleteTransaction: (req, res) => {
     const { id } = req.params;
 
