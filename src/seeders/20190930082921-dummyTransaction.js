@@ -22,7 +22,7 @@ module.exports = {
         {
           ProductId: 1,
           UserId: 1,
-          durationlimit: 0,
+          durationlimit: 23,
           status: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -30,7 +30,7 @@ module.exports = {
         {
           ProductId: 2,
           UserId: 1,
-          durationlimit: 0,
+          durationlimit: 23,
           status: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -38,7 +38,7 @@ module.exports = {
         {
           ProductId: 3,
           UserId: 1,
-          durationlimit: 0,
+          durationlimit: 23,
           status: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -46,7 +46,7 @@ module.exports = {
         {
           ProductId: 4,
           UserId: 1,
-          durationlimit: 0,
+          durationlimit: 23,
           status: true,
           createdAt: new Date(),
           updatedAt: new Date()
