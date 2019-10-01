@@ -57,7 +57,7 @@ module.exports = {
                 credit: 0
               })
                 .then(result => {
-                  // sendMail(name, email);
+                  sendMail(name, email);
                   response(res, result, 200);
                 })
                 .catch(err => {
