@@ -4,6 +4,7 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const root = require("./src/routes/root");
+const statusWatcher = require("./src/service/statusWatcher");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,5 +20,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", root);
+statusWatcher();
 
 module.exports = app;

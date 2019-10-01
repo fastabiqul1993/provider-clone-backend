@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     "Transaction",
     {
       ProductId: DataTypes.INTEGER,
-      UserId: DataTypes.INTEGER
+      UserId: DataTypes.INTEGER,
+      durationlimit: DataTypes.INTEGER,
+      status: DataTypes.BOOLEAN
     },
     {}
   );

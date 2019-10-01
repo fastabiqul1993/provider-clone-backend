@@ -22,24 +22,32 @@ module.exports = {
         {
           ProductId: 1,
           UserId: 1,
+          durationlimit: 0,
+          status: true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           ProductId: 2,
           UserId: 1,
+          durationlimit: 0,
+          status: true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           ProductId: 3,
           UserId: 1,
+          durationlimit: 0,
+          status: true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           ProductId: 4,
           UserId: 1,
+          durationlimit: 0,
+          status: true,
           createdAt: new Date(),
           updatedAt: new Date()
         }

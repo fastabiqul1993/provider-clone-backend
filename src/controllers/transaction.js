@@ -95,10 +95,13 @@ module.exports = {
   },
 
   patchTransaction: (req, res) => {
-    const { UserId, ProductId } = req.body;
+    const { UserId, ProductId, durationlimit, status } = req.body;
     const { id } = req.params;
 
-    Transaction.update({ UserId, ProductId }, { where: { id } })
+    Transaction.update(
+      { UserId, ProductId, durationlimit, status },
+      { where: { id } }
+    )
       .then(result => {
         let feedback = {};
         feedback.id = id;
