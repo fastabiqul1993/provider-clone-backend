@@ -28,11 +28,11 @@ router
   .post("/login", login)
   .post("/register", register)
   .post("/register/admin", registerAdmin)
-  .get("/admin/userName", getAllName)
-  .get("/admin", getAll)
-  .get("/admin/:id", getById)
-  .patch("/admin/:id", patchUser)
-  .delete("/admin/:id", deleteUser)
+  .get("/userName", getAllName)
+  .get("/", getAll)
+  .get("/:id", getById)
+  .patch("/:id", patchUser)
+  .delete("/:id", deleteUser)
   .put("/topUp/:id", topUp);
 
 module.exports = router;

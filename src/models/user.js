@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function(models) {
     // associations can be defined here
+    User.hasOne(models.Otp);
     User.hasMany(models.Transaction);
     User.hasMany(models.Notification);
   };

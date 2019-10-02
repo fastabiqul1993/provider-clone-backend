@@ -1,5 +1,3 @@
-// const Sequelize = require("sequelize");
-// const Op = Sequelize.Op;
 const { sequelize, Sequelize } = require("../models/index");
 const Op = Sequelize.Op;
 const { Product, Category, SubCategory } = require("../models");
@@ -91,12 +89,13 @@ module.exports = {
       description,
       price,
       bandwidth,
+      discount,
       duration,
       SubCategoryId
     } = req.body;
     const { id } = req.params;
 
-    const afterDiscount = getDiscount(price, discount);
+    const afterDiscount = discount ? getDiscount(price, discount) : discount;
 
     Product.update(
       {

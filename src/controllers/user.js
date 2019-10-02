@@ -29,7 +29,13 @@ module.exports = {
                 { expiresIn: "24h" }
               );
 
-              response(res, { token: generateToken }, 200);
+              let feedback = {};
+              feedback.name = result.name;
+              feedback.email = result.email;
+              feedback.phone = result.phone;
+              feedback.token = generateToken;
+
+              response(res, feedback, 200);
             } else {
               response(res, null, 400, err);
             }
