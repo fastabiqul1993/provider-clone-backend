@@ -104,29 +104,36 @@ module.exports = {
 
     const afterDiscount = discount ? getDiscount(priceFix, discFix) : discFix;
 
-    Product.update(
-      {
-        name,
-        description,
-        price,
-        discount,
-        discprice: afterDiscount,
-        bandwidth,
-        duration,
-        recommended,
-        SubCategoryId
-      },
-      { where: { id } }
-    )
-      .then(result => {
-        let feedback = {};
-        feedback.id = id;
+    // Product.find({ where: { id } })
+    // .then(result => {
+    //   Product.update({
+    //     {name, description, price, bandwidth, discount, duration,}
+    //   })
+    // })
 
-        response(res, feedback, 200);
-      })
-      .catch(err => {
-        response(res, null, 400, err);
-      });
+    // Product.update(
+    //   {
+    //     name,
+    //     description,
+    //     price,
+    //     discount,
+    //     discprice: afterDiscount,
+    //     bandwidth,
+    //     duration,
+    //     recommended,
+    //     SubCategoryId
+    //   },
+    //   { where: { id } }
+    // )
+    //   .then(result => {
+    //     let feedback = {};
+    //     feedback.id = id;
+
+    //     response(res, feedback, 200);
+    //   })
+    //   .catch(err => {
+    //     response(res, null, 400, err);
+    //   });
   },
   deleteProduct: (req, res) => {
     const { id } = req.params;

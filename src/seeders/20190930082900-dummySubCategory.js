@@ -33,7 +33,19 @@ module.exports = {
         },
         {
           CategoryId: 1,
-          name: "Rekomendasi",
+          name: "Owsem",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 1,
+          name: "Obor Dini Hari",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 1,
+          name: "Promo Rabu Rawit",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -51,7 +63,19 @@ module.exports = {
         },
         {
           CategoryId: 2,
-          name: "Rekomendasi",
+          name: "Booster Game",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 2,
+          name: "Booster Musik",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 2,
+          name: "Booster Sunset",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -64,12 +88,6 @@ module.exports = {
         {
           CategoryId: 3,
           name: "Curhat",
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          CategoryId: 3,
-          name: "Rekomendasi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -87,7 +105,13 @@ module.exports = {
         },
         {
           CategoryId: 4,
-          name: "Rekomendasi",
+          name: "Combo Mabrur",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 4,
+          name: "Mabrur Nelp & SMS",
           createdAt: new Date(),
           updatedAt: new Date()
         }
