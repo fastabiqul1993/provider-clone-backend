@@ -63,7 +63,10 @@ module.exports = {
       CategoryId
     } = req.body;
 
-    const afterDiscount = getDiscount(price, discount);
+    const discFix = Number(discount);
+    const priceFix = Number(price);
+
+    const afterDiscount = getDiscount(priceFix, discFix);
 
     Product.create({
       name,
