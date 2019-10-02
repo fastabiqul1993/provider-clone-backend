@@ -10,15 +10,14 @@ module.exports = {
     const { page, order, recommended, CategoryId, SubCategoryId } = req.query;
     const offset = page ? getOffset(page, 10) : 0;
     const orderBy = order ? order : "DESC";
-    const recDefault = recommended ? recommended : true;
 
     Product.findAndCountAll({
       limit: 10,
       offset,
       order: [["createdAt", orderBy]],
       where: {
-        CategoryId: CategoryId,
-        [Op.or]: [{ SubCategoryId }, { recommended: recDefault }]
+        [Op.or]: [{ CategoryId }, { SubCategoryId }],
+        [Op.and]: recommended ? { recommended } : { id: { [Op.not]: 0 } }
       },
       include: [{ model: Category }, { model: SubCategory }]
     })
