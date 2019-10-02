@@ -32,6 +32,12 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          CategoryId: 1,
+          name: "Rekomendasi",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
           CategoryId: 2,
           name: "Booster Sosmed",
           createdAt: new Date(),
@@ -40,6 +46,12 @@ module.exports = {
         {
           CategoryId: 2,
           name: "Booster Video",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 2,
+          name: "Rekomendasi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -56,6 +68,12 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          CategoryId: 3,
+          name: "Rekomendasi",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
           CategoryId: 4,
           name: "Axis Pass",
           createdAt: new Date(),
@@ -64,6 +82,12 @@ module.exports = {
         {
           CategoryId: 4,
           name: "Internet Mabrur",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          CategoryId: 4,
+          name: "Rekomendasi",
           createdAt: new Date(),
           updatedAt: new Date()
         }

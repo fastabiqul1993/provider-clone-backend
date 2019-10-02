@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       discprice: DataTypes.INTEGER,
       bandwidth: DataTypes.INTEGER,
       duration: DataTypes.INTEGER,
+      recommended: DataTypes.BOOLEAN,
       SubCategoryId: DataTypes.INTEGER,
       CategoryId: DataTypes.INTEGER
     },

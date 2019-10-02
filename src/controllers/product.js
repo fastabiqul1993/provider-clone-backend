@@ -5,7 +5,14 @@ const { response, getOffset, getDiscount } = require("../helpers/helper");
 
 module.exports = {
   getAllProduct: (req, res) => {
-    const { page, order, search, CategoryId, SubCategoryId } = req.query;
+    const {
+      page,
+      order,
+      recommended,
+      search,
+      CategoryId,
+      SubCategoryId
+    } = req.query;
     const offset = page ? getOffset(page, 10) : 0;
     const orderBy = order ? order : "DESC";
 
@@ -18,7 +25,8 @@ module.exports = {
           { name: { [Op.like]: `%${search}%` } },
           { CategoryId },
           { SubCategoryId }
-        ]
+        ],
+        [Op.and]: { recommended }
       },
       include: [{ model: Category }, { model: SubCategory }]
     })

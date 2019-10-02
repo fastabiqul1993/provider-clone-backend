@@ -29,6 +29,9 @@ module.exports = {
       duration: {
         type: Sequelize.INTEGER
       },
+      recommended: {
+        type: Sequelize.BOOLEAN
+      },
       SubCategoryId: {
         type: Sequelize.INTEGER
       },
