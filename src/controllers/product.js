@@ -1,32 +1,24 @@
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
+// const Op = Sequelize.Op;
+const { sequelize, Sequelize } = require("../models/index");
 const Op = Sequelize.Op;
 const { Product, Category, SubCategory } = require("../models");
 const { response, getOffset, getDiscount } = require("../helpers/helper");
 
 module.exports = {
   getAllProduct: (req, res) => {
-    const {
-      page,
-      order,
-      recommended,
-      search,
-      CategoryId,
-      SubCategoryId
-    } = req.query;
+    const { page, order, recommended, CategoryId, SubCategoryId } = req.query;
     const offset = page ? getOffset(page, 10) : 0;
     const orderBy = order ? order : "DESC";
+    const recDefault = recommended ? recommended : true;
 
     Product.findAndCountAll({
       limit: 10,
       offset,
       order: [["createdAt", orderBy]],
       where: {
-        [Op.or]: [
-          { name: { [Op.like]: `%${search}%` } },
-          { CategoryId },
-          { SubCategoryId }
-        ],
-        [Op.and]: { recommended }
+        CategoryId: CategoryId,
+        [Op.or]: [{ SubCategoryId }, { recommended: recDefault }]
       },
       include: [{ model: Category }, { model: SubCategory }]
     })
