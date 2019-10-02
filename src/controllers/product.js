@@ -96,7 +96,10 @@ module.exports = {
     } = req.body;
     const { id } = req.params;
 
-    const afterDiscount = discount ? getDiscount(price, discount) : discount;
+    const discFix = Number(discount);
+    const priceFix = Number(price);
+
+    const afterDiscount = discount ? getDiscount(priceFix, discFix) : discFix;
 
     Product.update(
       {
