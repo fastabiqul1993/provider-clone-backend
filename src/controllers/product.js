@@ -91,6 +91,7 @@ module.exports = {
       bandwidth,
       discount,
       duration,
+      recommended,
       SubCategoryId
     } = req.body;
     const { id } = req.params;
@@ -106,6 +107,7 @@ module.exports = {
         discprice: afterDiscount,
         bandwidth,
         duration,
+        recommended,
         SubCategoryId
       },
       { where: { id } }
