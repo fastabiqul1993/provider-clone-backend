@@ -73,14 +73,19 @@ module.exports = {
                   { credit: creditAfter },
                   { where: { id: UserId } }
                 ).then(function(user) {
-                  return Transaction.create({ UserId, ProductId });
+                  return Transaction.create({
+                    UserId,
+                    ProductId,
+                    durationlimit: 23,
+                    status: true
+                  });
                 });
               })
               .then(newTransaction => {
                 let feedback = {};
                 feedback.UserId = UserId;
                 feedback.ProductId = ProductId;
-                response(res, feedback, 200);
+                response(res, newTransaction, 200);
               });
           } else {
             response(res, null, 400, "Credit not enough!");
