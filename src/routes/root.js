@@ -8,6 +8,7 @@ const product = require("./product");
 const transaction = require("./transaction");
 const notification = require("./notification");
 const report = require("./report");
+const otp = require("./otp");
 
 router.use("/user", user);
 router.use("/category", category);
@@ -16,5 +17,6 @@ router.use("/product", product);
 router.use("/transaction", transaction);
 router.use("/notification", notification);
 router.use("/report", report);
+router.use("/otp", otp);
 
 module.exports = router;

@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('SubCategories', {
+    return queryInterface.createTable("SubCategories", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       CategoryId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       name: {
@@ -25,6 +26,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('SubCategories');
+    return queryInterface.dropTable("SubCategories");
   }
 };

@@ -1,15 +1,15 @@
 const { User, Otp } = require("../models");
-const { response } = require("../helpers/helper");
+const { response, sendMail } = require("../helpers/helper");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  createOtp: (req, res) => {
-    const { UserId } = req.body;
-    const newOtp = Math.floor(Math.random() * 10000);
+  createOtp: async (id, email, name) => {
+    const newOtp = await Math.floor(Math.random() * 10000);
 
-    Otp.create({ UserId, otpnumber: newOtp })
+    Otp.create({ UserId: id, otpnumber: newOtp })
       .then(result => {
-        response(res, result, 200);
+        sendMail(name, email, newOtp);
+        return true;
       })
       .catch(err => {
         response(res, null, 400, err);
@@ -17,10 +17,38 @@ module.exports = {
   },
 
   loginOtp: (req, res) => {
-    const { UserId } = req.body;
-    Otp.findOne({ where: { UserId } })
+    const { UserId, otp } = req.body;
+    Otp.findOne({ where: { UserId }, include: { model: User } })
       .then(result => {
-        console.log(result);
+        // console.log(result.User.name);
+        if (result) {
+          const { User } = result;
+          if (result.otpnumber === Number(otp)) {
+            const generateToken = jwt.sign(
+              {
+                id: UserId,
+                name: User.name,
+                role: User.role
+              },
+              process.env.SECRET_KEY,
+              { expiresIn: "24h" }
+            );
+            let feedback = {};
+            feedback.token = generateToken;
+            Otp.destroy({ where: { UserId } })
+              .then(resDestroy => {
+                console.log("delete OTP success");
+              })
+              .catch(err => {
+                console.log(`error occurs: ${err}`);
+              });
+            response(res, feedback, 200);
+          } else {
+            response(res, null, 400, "OTP not valid!");
+          }
+        } else {
+          response(res, null, 400, "UserId not found!");
+        }
       })
       .catch(err => {
         console.log(err);

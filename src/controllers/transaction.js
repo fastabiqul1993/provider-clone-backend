@@ -86,6 +86,9 @@ module.exports = {
                 feedback.UserId = UserId;
                 feedback.ProductId = ProductId;
                 response(res, newTransaction, 200);
+              })
+              .catch(err => {
+                response(res, null, 400, `error occurs: ${err}`);
               });
           } else {
             response(res, null, 400, "Credit not enough!");
@@ -95,7 +98,7 @@ module.exports = {
         }
       })
       .catch(err => {
-        console.log(err);
+        response(res, null, 400, "UserId or CategoryId cannot be empty!");
       });
   },
 

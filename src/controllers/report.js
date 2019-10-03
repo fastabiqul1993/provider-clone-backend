@@ -29,7 +29,7 @@ module.exports = {
         response(res, result, 200);
       })
       .catch(err => {
-        response(res, null, 400, err);
+        response(res, null, 400, "UserId cannot be empty!");
       });
   }
 };

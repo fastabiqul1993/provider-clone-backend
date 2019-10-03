@@ -3,48 +3,64 @@ const bcrypt = require("bcrypt");
 const saltRount = 10;
 
 const { User, Transaction } = require("../models");
+const { createOtp } = require("../controllers/otp");
 const { response, getOffset, sendMail } = require("../helpers/helper");
 
 module.exports = {
   login: (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, phone } = req.body;
 
-    User.findOne({ where: { email } })
-      .then(result => {
-        if (!result) {
-          response(res, null, 400, "Email not found!");
-        } else {
-          bcrypt.compare(password, result.password, (err, isCompare) => {
-            if (!isCompare) {
-              response(res, null, 400, "Password not match!");
-            } else if (isCompare) {
-              const { id, name, role } = result;
-              const generateToken = jwt.sign(
-                {
-                  id,
-                  name,
-                  role
-                },
-                process.env.SECRET_KEY,
-                { expiresIn: "24h" }
-              );
+    if (!phone) {
+      User.findOne({ where: { email } })
+        .then(result => {
+          if (!result) {
+            response(res, null, 400, "Email not found!");
+          } else {
+            bcrypt.compare(password, result.password, (err, isCompare) => {
+              if (!isCompare) {
+                response(res, null, 400, "Password not match!");
+              } else if (isCompare) {
+                const { id, name, role } = result;
+                const generateToken = jwt.sign(
+                  {
+                    id,
+                    name,
+                    role
+                  },
+                  process.env.SECRET_KEY,
+                  { expiresIn: "24h" }
+                );
 
-              let feedback = {};
-              feedback.name = result.name;
-              feedback.email = result.email;
-              feedback.phone = result.phone;
-              feedback.token = generateToken;
+                let feedback = {};
+                feedback.name = result.name;
+                feedback.email = result.email;
+                feedback.phone = result.phone;
+                feedback.token = generateToken;
 
-              response(res, feedback, 200);
-            } else {
-              response(res, null, 400, err);
-            }
-          });
-        }
-      })
-      .catch(error => {
-        response(res, null, 400, error);
-      });
+                response(res, feedback, 200);
+              } else {
+                response(res, null, 400, err);
+              }
+            });
+          }
+        })
+        .catch(error => {
+          response(res, null, 400, error);
+        });
+    } else {
+      User.findOne({ where: { phone } })
+        .then(result => {
+          if (!result) {
+            response(res, null, 400, "Phone not found!");
+          } else {
+            createOtp(result.id, result.email, result.name);
+            response(res, result, 200);
+          }
+        })
+        .catch(err => {
+          response(res, null, 400, err);
+        });
+    }
   },
   register: (req, res) => {
     const { name, email, phone, password } = req.body;
