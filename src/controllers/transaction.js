@@ -15,7 +15,8 @@ module.exports = {
       offset,
       order: [["createdAt", orderBy]],
       where: {
-        [Op.or]: [{ UserId }, { ProductId }, { id: { [Op.not]: 0 } }]
+        UserId: UserId,
+        [Op.or]: [{ ProductId }, { id: { [Op.not]: 0 } }]
       },
       include: [{ model: User }, { model: Product }]
     })
