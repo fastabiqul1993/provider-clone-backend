@@ -5,6 +5,25 @@ const { Transaction, User, Product } = require("../models");
 const { response, getOffset } = require("../helpers/helper");
 
 module.exports = {
+  getAllTransactionAdmin: (req, res) => {
+    const { page, order, UserId, ProductId } = req.query;
+    const offset = page ? getOffset(page, 10) : 0;
+    const orderBy = order ? order : "DESC";
+
+    Transaction.findAndCountAll({
+      limit: 10,
+      offset,
+      order: [["createdAt", orderBy]],
+      include: [{ model: User }, { model: Product }]
+    })
+      .then(result => {
+        response(res, result, 200);
+      })
+      .catch(err => {
+        response(res, null, 400, err);
+      });
+  },
+
   getAllTransaction: (req, res) => {
     const { page, order, UserId, ProductId } = req.query;
     const offset = page ? getOffset(page, 10) : 0;
