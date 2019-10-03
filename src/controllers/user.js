@@ -9,7 +9,6 @@ const { response, getOffset } = require("../helpers/helper");
 module.exports = {
   login: (req, res) => {
     const { email, password, phone } = req.body;
-    let phoneFix = `+62${phone.slice(1)}`;
 
     if (!phone) {
       User.findOne({ where: { email } })
@@ -49,7 +48,7 @@ module.exports = {
           response(res, null, 400, error);
         });
     } else {
-      User.findOne({ where: { phone: phoneFix } })
+      User.findOne({ where: { phone: `+62${phone.slice(1)}` } })
         .then(result => {
           if (!result) {
             response(res, null, 400, "Phone not found!");

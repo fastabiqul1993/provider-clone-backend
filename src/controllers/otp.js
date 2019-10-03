@@ -23,7 +23,7 @@ module.exports = {
         Otp.create({ UserId: id, otpnumber: newOtp })
           .then(result => {
             sendMail(email, newOtp);
-            return true;
+            response(res, "Check your email!", 200);
           })
           .catch(err => {
             response(res, null, 400, err);
