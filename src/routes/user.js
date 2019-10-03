@@ -11,7 +11,7 @@ const {
   patchUser,
   deleteUser
 } = require("../controllers/user");
-const { isAuth, isAdmin } = require("../middlewares/auth");
+const { isAuth, isAdmin, isUser } = require("../middlewares/auth");
 
 router
   .post("/login", login)
@@ -19,7 +19,7 @@ router
   .post("/register/admin", isAuth, registerAdmin)
   .get("/userName", getAllName)
   .get("/", isAuth, isAdmin, getAll)
-  .get("/:id", isAuth, isAdmin, getById)
+  .get("/:id", isAuth, isUser, getById)
   .patch("/:id", isAuth, isAdmin, patchUser)
   .delete("/:id", isAuth, isAdmin, deleteUser)
   .put("/topUp/:id", isAuth, isAdmin, topUp);
