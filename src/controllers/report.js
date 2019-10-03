@@ -23,7 +23,6 @@ module.exports = {
 
   createReport: (req, res) => {
     const { complain, UserId } = req.body;
-
     Report.create({ complain, UserId })
       .then(result => {
         response(res, result, 200);

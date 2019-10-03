@@ -7,20 +7,13 @@ const {
   patchTransaction,
   deleteTransaction
 } = require("../controllers/transaction");
-const { isAuth, isAdmin, isUser } = require("../middlewares/auth");
-
-// router
-//   .get("/", getAllTransaction)
-//   .post("/", isAuth, isUser, createTransaction)
-//   .get("/:id", getTransaction)
-//   .patch("/:id", isAuth, isAdmin, patchTransaction)
-//   .delete("/:id", isAuth, isAdmin, deleteTransaction);
+const { isAuth, isUser } = require("../middlewares/auth");
 
 router
   .get("/", getAllTransaction)
-  .post("/", createTransaction)
+  .post("/", isAuth, isUser, createTransaction)
   .get("/:id", getTransaction)
-  .patch("/:id", patchTransaction)
-  .delete("/:id", deleteTransaction);
+  .patch("/:id", isAuth, isUser, patchTransaction)
+  .delete("/:id", isAuth, isUser, deleteTransaction);
 
 module.exports = router;

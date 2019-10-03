@@ -4,11 +4,12 @@ const saltRount = 10;
 
 const { User, Transaction } = require("../models");
 const { createOtp } = require("../controllers/otp");
-const { response, getOffset, sendMail } = require("../helpers/helper");
+const { response, getOffset } = require("../helpers/helper");
 
 module.exports = {
   login: (req, res) => {
     const { email, password, phone } = req.body;
+    let phoneFix = `+62${phone.slice(1)}`;
 
     if (!phone) {
       User.findOne({ where: { email } })
@@ -48,13 +49,18 @@ module.exports = {
           response(res, null, 400, error);
         });
     } else {
-      User.findOne({ where: { phone } })
+      User.findOne({ where: { phone: phoneFix } })
         .then(result => {
           if (!result) {
             response(res, null, 400, "Phone not found!");
           } else {
-            createOtp(result.id, result.email, result.name);
-            response(res, result, 200);
+            createOtp(result.id, result.name, result.phone);
+
+            let feedback = {};
+            feedback.id = result.id;
+            feedback.email = result.email;
+
+            response(res, feedback, 200);
           }
         })
         .catch(err => {
@@ -64,6 +70,7 @@ module.exports = {
   },
   register: (req, res) => {
     const { name, email, phone, password } = req.body;
+    let phoneFix = `+62${phone.slice(1)}`;
 
     User.findOne({ where: { email }, raw: true })
       .then(result => {
@@ -73,13 +80,12 @@ module.exports = {
               User.create({
                 name,
                 email,
-                phone,
+                phone: phoneFix,
                 password: hash,
                 role: "user",
                 credit: 0
               })
                 .then(result => {
-                  sendMail(name, email);
                   response(res, result, 200);
                 })
                 .catch(err => {

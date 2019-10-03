@@ -23,6 +23,7 @@
     "nodemailer": "^6.3.0",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^4.44.3"
+    "sequelize": "^4.44.3",
+    "twilio": "^3.35.1"
   }
 }
