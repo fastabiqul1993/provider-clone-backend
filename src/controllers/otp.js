@@ -55,6 +55,7 @@ module.exports = {
           feedback.name = User.name;
           feedback.email = User.email;
           feedback.phone = User.phone;
+          feedback.credit = User.credit;
           feedback.token = generateToken;
 
           Otp.destroy({ where: { UserId } })
