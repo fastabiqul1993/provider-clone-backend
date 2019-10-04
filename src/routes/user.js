@@ -20,7 +20,7 @@ router
   .get("/userName", getAllName)
   .get("/", isAuth, isAdmin, getAll)
   .get("/:id", isAuth, isUser, getById)
-  .patch("/:id", isAuth, isAdmin, patchUser)
+  .patch("/:id", isAuth, isUser, patchUser)
   .delete("/:id", isAuth, isAdmin, deleteUser)
   .put("/topUp/:id", isAuth, isAdmin, topUp);
 
