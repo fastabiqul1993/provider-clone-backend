@@ -1,25 +1,28 @@
 const { User, Otp } = require("../models");
 const { response, sendMail, sendSms } = require("../helpers/helper");
 const jwt = require("jsonwebtoken");
-const newOtp = Math.floor(Math.random() * 10000);
 
 module.exports = {
   createOtp: (id, name, phone) => {
+    let newOtp = Math.floor(Math.random() * 10000);
+
     Otp.create({ UserId: id, otpnumber: newOtp })
       .then(result => {
-        sendSms(name, newOtp, phone);
+        sendSms(name, "1234", phone);
         return true;
       })
       .catch(err => {
-        response(res, null, 400, err);
+        response(res, null, 400, "error create OTP");
       });
   },
 
-  forwardMail: async (req, res) => {
+  forwardMail: (req, res) => {
     const { id, email } = req.body;
 
     Otp.destroy({ where: { UserId: id } })
       .then(() => {
+        let newOtp = Math.floor(Math.random() * 10000);
+
         Otp.create({ UserId: id, otpnumber: newOtp })
           .then(result => {
             sendMail(email, newOtp);
@@ -70,42 +73,6 @@ module.exports = {
         } else {
           response(res, null, 400, "OTP not match!");
         }
-        // if(User.)
-        // console.log(User.name);
-        // console.log(result.User).name;
-        // if (result) {
-        //   const { User } = result;
-        //   if (result.otpnumber === Number(otp)) {
-        //     const generateToken = jwt.sign(
-        //       {
-        //         id: UserId,
-        //         name: User.name,
-        //         role: User.role
-        //       },
-        //       process.env.SECRET_KEY,
-        //       { expiresIn: "24h" }
-        //     );
-        //     let feedback = {};
-        //     feedback.name = User.name;
-        //     feedback.email = User.email;
-        //     feedback.phone = User.phone;
-        //     feedback.token = generateToken;
-
-        //     Otp.destroy({ where: { UserId } })
-        //       .then(resDestroy => {
-        //         console.log("delete OTP success");
-        //       })
-        //       .catch(err => {
-        //         console.log(`error occurs: ${err}`);
-        //       });
-
-        //     response(res, feedback, 200);
-        //   } else {
-        //     response(res, null, 400, "OTP not valid!");
-        //   }
-        // } else {
-        //   response(res, null, 400, "UserId not found!");
-        // }
       })
       .catch(err => {
         console.log(err);
