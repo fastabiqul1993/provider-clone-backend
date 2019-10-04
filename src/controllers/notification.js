@@ -9,7 +9,7 @@ module.exports = {
 
     Notification.findAndCountAll({
       where: {
-        [Op.or]: [{ UserId }, { id: { [Op.not]: 0 } }]
+        UserId: UserId
       }
     })
       .then(result => {

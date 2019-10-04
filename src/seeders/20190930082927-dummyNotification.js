@@ -21,13 +21,7 @@ module.exports = {
       [
         {
           UserId: 1,
-          message: "bayar tagihannya goblokkk!",
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          UserId: 1,
-          message: "Jangan ngutang woi!",
+          message: "Nikmati promo paket murah sekarang juga!",
           createdAt: new Date(),
           updatedAt: new Date()
         }
