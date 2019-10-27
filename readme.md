@@ -46,7 +46,7 @@ $ npm install
   }
 ```
 
-## Start development server
+### Start development server
 ```
 $ npm start
 ```
