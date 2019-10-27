@@ -19,6 +19,7 @@
 * [Prerequiste](#prerequiste)
 * [Installation](#installation)
 * [Documentation](#documentation)
+* [Contributors](#contributors)
 * [License](#license)
 
 ## Prerequiste
@@ -66,6 +67,38 @@ $ npm start
 #### More
 
 - Postman collections - Click [This](https://crimson-crater-9404.postman.co/collections/4256322-3a47dbf6-2729-4c2e-9f77-8dacdade4754?version=latest&workspace=935b9283-0d9a-4e3e-8fe2-dca940e4b8de) to look the example and how to use it
+
+
+## Contributors
+
+<table border="0">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/areydras">
+        <img width="110" src="https://avatars3.githubusercontent.com/u/10308406?s=460&v=4"><br/>
+          <sub><b>Areydra</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/fikribasa">
+        <img width="110" src="https://avatars0.githubusercontent.com/u/34205138?s=460&v=4"><br/>
+          <sub><b>Fikri Basa</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Oreki13">
+        <img width="110" src="https://avatars2.githubusercontent.com/u/52338405?s=460&v=4"><br/>
+          <sub><b>Arfandy</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/fastaman993">
+        <img width="110" src="https://avatars2.githubusercontent.com/u/54013498?s=460&v=4"><br/>
+          <sub><b>Adhy F. Khoirot</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## License
 [ISC](https://en.wikipedia.org/wiki/ISC_license "ISC")
