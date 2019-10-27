@@ -52,7 +52,19 @@ $ npm start
 ```
 
 ## Documentation
-### How to use
+
+### Routes Example
+#### User
+
+- POST "/user/login" => Login endpoint, will return user data with token
+- GET "/user/" => display all user, with default pagination {page: 1, limit: 10}.
+  Header :
+  - token -> token from login
+  - header_key -> PR0V1D3R
+- POST "/user/register" => register new user.
+
+#### More
+
 - Postman collections - Click [This](https://crimson-crater-9404.postman.co/collections/4256322-3a47dbf6-2729-4c2e-9f77-8dacdade4754?version=latest&workspace=935b9283-0d9a-4e3e-8fe2-dca940e4b8de) to look the example and how to use it
 
 ## License
