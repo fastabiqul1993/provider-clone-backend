@@ -53,10 +53,7 @@ $ npm start
 
 ## Documentation
 ### How to use
-```
-postman collection : https://www.getpostman.com/collections/0626f974c1b91b118f30
-```
+- Postman collections - Click [this](https://www.getpostman.com/collections/0626f974c1b91b118f30) to look the example and how to use it
 
 ## License
----
 [ISC](https://en.wikipedia.org/wiki/ISC_license "ISC")
